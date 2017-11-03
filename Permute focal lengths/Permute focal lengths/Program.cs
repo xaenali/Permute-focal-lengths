@@ -213,6 +213,7 @@ namespace Permute_focal_lengths
                                 }
                             Console.WriteLine("Another comment Looks fine");
                             Console.WriteLine("Laptop comment");
+                            Console.WriteLine("Desktopcomment");
                         }
 
                     }
