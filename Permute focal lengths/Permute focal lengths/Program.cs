@@ -9,9 +9,9 @@ namespace Permute_focal_lengths
     {
         static void Main(string[] args)
         {
-            double[] focallength1 = new double[] { 140 }; // Initialize array for focal length 1
-            double[] focallength2 = new double[] { -20 }; // Initialize array for focal length 2
-            double[] focallength3 = new double[] { 70 }; //Initialize array for focal length 3
+            double[] focallength1 = new double[] { 140,140,140 }; // Initialize array for focal length 1
+            double[] focallength2 = new double[] { -20,-20,-20 }; // Initialize array for focal length 2
+            double[] focallength3 = new double[] { 1,2,70 }; //Initialize array for focal length 3
             double[] MxratioMy = new double[3];
             double[] Mx = new double[3];
             double[] My = new double[3];
@@ -33,7 +33,7 @@ namespace Permute_focal_lengths
             double[] Maxtrackstore = new double[3];
             double InputMax, InputMin;
 
-            int k, l, m, n = 0, o;
+            int k, l, m, n = 0, o = 0, p;
 
             while (true)
             {
@@ -211,7 +211,7 @@ namespace Permute_focal_lengths
                                     Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[m], focallength2[m], focallength3[m]);
 
                                 }
-                            Console.WriteLine("deletebranch");
+                            //Console.WriteLine("deletebranch");
 
                         }
 
