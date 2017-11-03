@@ -211,6 +211,7 @@ namespace Permute_focal_lengths
                                     Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[m], focallength2[m], focallength3[m]);
 
                                 }
+                            Console.WriteLine("test it");
 
                         }
 
