@@ -7,11 +7,16 @@ namespace Permute_focal_lengths
 {
     class Program
     {
+              
+                
         static void Main(string[] args)
         {
+           
+                      
+            
             double[] focallength1 = new double[] { 140 }; // Initialize array for focal length 1
-            double[] focallength2 = new double[] { -20 }; // Initialize array for focal length 2
-            double[] focallength3 = new double[] { 70 }; //Initialize array for focal length 3
+            double[] focallength2 = new double[] { -20}; // Initialize array for focal length 2
+            double[] focallength3 = new double[] {1 }; //Initialize array for focal length 3
             double[] MxratioMy = new double[3];
             double[] Mx = new double[3];
             double[] My = new double[3];
@@ -31,6 +36,7 @@ namespace Permute_focal_lengths
             double[] d1forInputMin = new double[3];
             double[] d2forInputMin = new double[3];
             double[] Maxtrackstore = new double[3];
+            double[] Maxlengths = new double[3];  
             double InputMax, InputMin;
 
             int k, l, m, n = 0, o;
@@ -173,8 +179,7 @@ namespace Permute_focal_lengths
 
                                 Maxtrack[m] = Math.Round((double)focallength1[m] + 2 * focallength2[m] + focallength3[m] + (focallength2[m] * (((focallength3[m] * MxratioMy[m]) / focallength1[m]) + focallength1[m] / (focallength3[m] * MxratioMy[m]))), 4);
 
-
-
+                                
                                 Console.WriteLine("The total system length (d1+d2) = {0} for Magnification = {1} with F1 = {2}, F2 = {3} and F3 = {4} ", Maxtrack[m], MxratioMy[m], focallength1[m], focallength2[m], focallength3[m]);
 
                                 d1forMxratioMy[m] = Math.Round((double)focallength1[m] + focallength2[m] + ((focallength1[m] * focallength2[m]) / (MxratioMy[m] * focallength3[m])), 4);
@@ -210,15 +215,12 @@ namespace Permute_focal_lengths
 
                                     Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[m], focallength2[m], focallength3[m]);
 
-                                }
-                            Console.WriteLine("Another comment Looks fine");
-                            Console.WriteLine("Laptop comment");
-                            Console.WriteLine("Desktopcomment");
-                        }
-
+                                }                           
+                        }                        
+                                           
                     }
-
-                }
+                   
+                }              
 
             }
 
