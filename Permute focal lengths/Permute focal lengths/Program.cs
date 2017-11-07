@@ -264,14 +264,14 @@ namespace Permute_focal_lengths
                                              
                    }
                                    
-            return 0;           
+            return userinputs(F1, F2, F3, MxratioMy, Maxtrack);           
             
          
         }
 
         public static double Maxtractcal(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
         {
-            int o = 0, q = 0, r = 0, t = 0;
+            int o = 0, q = 0, r = 0, t = 0 ;
 
             double MaxF1, MaxF2, MaxF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy, MaxInput;
 
@@ -319,8 +319,11 @@ namespace Permute_focal_lengths
                 }
             }
 
-            Console.WriteLine("Focallength choosed with Maxtrack are: F1 = {0}, F2 = {1}, F3 = {2} \n", F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
-            Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+                        
+                Console.WriteLine("Focallength choosed with Maxtrack are: F1 = {0}, F2 = {1}, F3 = {2} \n", F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
+
+                Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+                            
 
             MaxF1 = F1List[MaxtrackList.IndexOf(MaxtrackList.Max())];
 
@@ -343,13 +346,22 @@ namespace Permute_focal_lengths
 
             MaxMy = Math.Round((double)-Maxb1 / Maxa1, 4);
 
-            Console.WriteLine("Enter Magnification upto 4 decimal point");
+            Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to select track length again");
+                       
+            // Check for value other than numerics
 
-            MaxInput = double.Parse(Console.ReadLine());
+            while(!Double.TryParse(Console.ReadLine(), out MaxInput))
+            {             
 
-            Console.WriteLine("\n");
+                Console.WriteLine("Please enter numeric value \n");
 
+                Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to select track length again");
+            }
+                                 
 
+            Console.WriteLine("\n");                                               
+            
+            
             if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (MaxInput <= MaxMx) && (MaxInput >= MaxMy))
             {
 
@@ -393,6 +405,7 @@ namespace Permute_focal_lengths
 
             return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
         }
+            
 
         public static double Mintrackcal(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
         {
@@ -470,12 +483,18 @@ namespace Permute_focal_lengths
 
             MaxMy = Math.Round((double)-Maxb1 / Maxa1, 4);
 
-            Console.WriteLine("Enter Magnification upto 4 decimal point");
+            Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to select track length again");
 
-            MinInput = double.Parse(Console.ReadLine());
+            // Check for value other than numerics
+            
+            while (!Double.TryParse(Console.ReadLine(), out MinInput))
+            {               
+                Console.WriteLine("Please enter numeric value \n");
 
-            Console.WriteLine("\n");
-
+                Console.WriteLine("Enter Magnification upto 4 decimal point or write userinput to select track length again");
+            }
+                                
+             
 
             if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (MinInput <= MaxMx) && (MinInput >= MaxMy))
             {
@@ -559,13 +578,25 @@ namespace Permute_focal_lengths
 
                 n = 0; // Make n(number of combination) = 0, in start and at the end of all the combination 
 
-                Console.WriteLine("Enter Max Magnification upto 4 decimal point");
+                Console.WriteLine("Enter Max Magnification upto 4 decimal point \n");
 
-                InputMax = double.Parse(Console.ReadLine());
+               while(!Double.TryParse(Console.ReadLine(), out InputMax))
+               {
+                   Console.WriteLine("Please only input numeric value \n");
+               }
 
-                Console.WriteLine("Enter Min Magnification upto 4 decimal point");
+               Console.WriteLine("\n");
 
-                InputMin = double.Parse(Console.ReadLine());
+                Console.WriteLine("Enter Min Magnification upto 4 decimal point \n");
+
+                // Check for value other than numerics
+
+                while (!Double.TryParse(Console.ReadLine(), out InputMin))
+                {
+                    Console.WriteLine("Please only input numeric value \n");
+
+                    Console.WriteLine("Enter Min Magnification upto 4 decimal point \n");
+                }
 
                 Console.WriteLine("\n");
 
