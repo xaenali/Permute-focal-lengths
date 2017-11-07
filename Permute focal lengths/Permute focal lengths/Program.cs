@@ -348,6 +348,7 @@ namespace Permute_focal_lengths
 
             Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to select track length again");
                        
+            // Check for value other than numerics
 
             while(!Double.TryParse(Console.ReadLine(), out MaxInput))
             {             
@@ -484,6 +485,8 @@ namespace Permute_focal_lengths
 
             Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to select track length again");
 
+            // Check for value other than numerics
+            
             while (!Double.TryParse(Console.ReadLine(), out MinInput))
             {               
                 Console.WriteLine("Please enter numeric value \n");
@@ -585,6 +588,8 @@ namespace Permute_focal_lengths
                Console.WriteLine("\n");
 
                 Console.WriteLine("Enter Min Magnification upto 4 decimal point \n");
+
+                // Check for value other than numerics
 
                 while (!Double.TryParse(Console.ReadLine(), out InputMin))
                 {
