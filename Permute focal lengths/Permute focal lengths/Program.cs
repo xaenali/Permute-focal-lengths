@@ -75,7 +75,9 @@ namespace Permute_focal_lengths
 
         public static double perm(double[] F1, double[] F2, double[] F3)
         {
-            int o = 0, q = 0, r = 0, t = 0, i, j, k;            
+           // int o = 0, q = 0, r = 0, t = 0; 
+
+            int i, j, k, o = 0;            
                               
             for ( i = 0; i < F1.Length; i++)
             {           
@@ -84,17 +86,17 @@ namespace Permute_focal_lengths
                 {                                                        
                     for ( k = 0; k < F3.Length; k++)
                     {                        
-                        F1store[q] = F1[i];
+                     //   F1store[q] = F1[i];
 
-                        F1List.Add(F1store[q]);
+                        F1List.Add(F1[i]);
 
-                        F2store[r] = F2[j];
+                       // F2store[r] = F2[j];
 
-                        F2List.Add(F2store[r]);
+                        F2List.Add(F2[j]);
 
-                        F3store[t] = F3[k];
+                       // F3store[t] = F3[k];
 
-                        F3List.Add(F3store[t]);
+                        F3List.Add(F3[k]);
 
                         a1[k] = Math.Round((double)F1[i] + F2[j], 4);
 
