@@ -7,10 +7,10 @@ namespace Permute_focal_lengths
 {
     class Program
     {
-     
-        public static  double InputMax, InputMin;
+
+        public static double InputMax, InputMin;
         public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
-        public static double Maxd1, Maxd2, Input;      
+        public static double Maxd1, Maxd2, Input;
         //public static IList<double> Mx = new List<double>();
         //public static IList<double> My = new List<double>();
         //public static IList<double> a1 = new List<double>();
@@ -70,20 +70,20 @@ namespace Permute_focal_lengths
         public static double[] d1forInputMax = new double[3];
         public static double[] d2forInputMax = new double[3];
         public static double[] d1forInputMin = new double[3];
-        public static double[] d2forInputMin = new double[3];           
+        public static double[] d2forInputMin = new double[3];
 
 
         public static double perm(double[] F1, double[] F2, double[] F3)
         {
-            int i, j, k, o = 0;            
-                              
-            for ( i = 0; i < F1.Length; i++)
-            {           
-                     
-                for ( j = 0; j < F2.Length; j++)
-                {                                                        
-                    for ( k = 0; k < F3.Length; k++)
-                    {    
+            int i, j, k, o = 0;
+
+            for (i = 0; i < F1.Length; i++)
+            {
+
+                for (j = 0; j < F2.Length; j++)
+                {
+                    for (k = 0; k < F3.Length; k++)
+                    {
                         F1List.Add(F1[i]);
 
                         F2List.Add(F2[j]);
@@ -115,24 +115,24 @@ namespace Permute_focal_lengths
 
                             double length = MaxtrackList.Count;
 
-                        } 
-                        
+                        }
+
                         else
 
                             if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
-                           {
-                               
+                            {
+
                                 // Do nothing here just ignore the values
-                        
-                          }                                                                                                              
-                    }                  
-                  
-                }                
+
+                            }
+                    }
+
+                }
             }
 
             //check for emptiness of a List for no suitable combination of focal length
 
-            if(!MaxtrackList.Any())
+            if (!MaxtrackList.Any())
             {
                 Console.WriteLine("There is no suitable focal length in database for this configuration \n");
 
@@ -143,23 +143,23 @@ namespace Permute_focal_lengths
 
                 // Display Tracklengths only once last element in the list is reached
 
-           for (int p = 0; p < MaxtrackList.Count; p++)
-            { 
+                for (int p = 0; p < MaxtrackList.Count; p++)
+                {
 
-               if (p == MaxtrackList.Count - 1)
-               {
-                   // Get Maximum and Minimum value of Tracklength with respective Focal lengths  
+                    if (p == MaxtrackList.Count - 1)
+                    {
+                        // Get Maximum and Minimum value of Tracklength with respective Focal lengths  
 
-                   Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
+                        Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
 
-                   Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
+                        Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-               }                                                    
-           }
+                    }
+                }
 
-                Console.WriteLine("\n");
-                                 
-                return userinputs(F1, F2, F3);
+            Console.WriteLine("\n");
+
+            return userinputs(F1, F2, F3);
         }
 
         public static double userinputs(double[] F1, double[] F2, double[] F3)
@@ -172,39 +172,39 @@ namespace Permute_focal_lengths
 
             string choose = Console.ReadLine();
 
-                   Console.WriteLine("\n");
+            Console.WriteLine("\n");
 
 
-                   switch (choose)
-                   {
-                       // Choosing Maxtracklength option for focallengths
+            switch (choose)
+            {
+                // Choosing Maxtracklength option for focallengths
 
-                       case "a":
+                case "a":
 
-                           return Maxtractcal(F1, F2, F3); 
-                       
-                       case "b":
+                    return Maxtractcal(F1, F2, F3);
 
-                           return Mintrackcal(F1, F2, F3);
+                case "b":
 
-                       default:
+                    return Mintrackcal(F1, F2, F3);
 
-                           Console.WriteLine("Please choose from (a) or (b) \n");
+                default:
 
-                           break;
-                                             
-                   }
-                                   
-            return userinputs(F1, F2, F3);           
-            
-         
+                    Console.WriteLine("Please choose from (a) or (b) \n");
+
+                    break;
+
+            }
+
+            return userinputs(F1, F2, F3);
+
+
         }
 
         public static double Maxtractcal(double[] F1, double[] F2, double[] F3)
         {
-            int a = 1;                          
+            int a = 1;
 
-            if(a == 1)
+            if (a == 1)
             {
                 Console.WriteLine("Focallength choosed with Maxtrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
 
@@ -237,81 +237,81 @@ namespace Permute_focal_lengths
 
             while (true)
             {
-                           
-            Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
-                       
-            // Check for value other than numerics
-
-            while(!Double.TryParse(Console.ReadLine(), out Input))
-            {             
-
-                Console.WriteLine("Please enter numeric value \n");
 
                 Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
-            }
-                                 
 
-            Console.WriteLine("\n");
+                // Check for value other than numerics
 
-
-            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy) && (Input <= InputMax) && (Input >= InputMin))
-            {
-
-                Console.WriteLine("Conditions satified \n");
-
-
-                //Calculate d1 and d2 for the Input Magnification
-
-                Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
-
-                Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
-
-                if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                while (!Double.TryParse(Console.ReadLine(), out Input))
                 {
-                    Maxd1 = 0;
+
+                    Console.WriteLine("Please enter numeric value \n");
+
+                    Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
                 }
+
+
+                Console.WriteLine("\n");
+
+
+                if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy) && (Input <= InputMax) && (Input >= InputMin))
+                {
+
+                    Console.WriteLine("Conditions satified \n");
+
+
+                    //Calculate d1 and d2 for the Input Magnification
+
+                    Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
+
+                    Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
+
+                    if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                    {
+                        Maxd1 = 0;
+                    }
+                    else
+
+                        if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                        {
+                            Maxd2 = 0;
+                        }
+
+                    Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
+
+                }
+
                 else
 
-                    if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                    if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy) || (Input >= InputMax) || (Input <= InputMin))
                     {
-                        Maxd2 = 0;
+
+
+                        Console.WriteLine("Conditions didn't satified \n");
+
+                        Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
+
+                        return Maxtractcal(F1, F2, F3);
+
                     }
 
-                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
-
             }
 
-            else
-
-                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy) || (Input >= InputMax) || (Input <= InputMin))
-                {
-
-
-                    Console.WriteLine("Conditions didn't satified \n");
-
-                    Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
-
-                    return Maxtractcal(F1, F2, F3);
-
-                }
-
-            }
-
-           // return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
+            // return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
         }
 
         public static double Mintrackcal(double[] F1, double[] F2, double[] F3)
-        {        
+        {
             int a = 1;
 
-            if(a == 1)
+            if (a == 1)
             {
 
                 Console.WriteLine("Focallength choosed with Mintrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-            Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+                Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-            a = a + 1;
+                a = a + 1;
 
             }
 
@@ -337,72 +337,72 @@ namespace Permute_focal_lengths
             MaxMy = Math.Round((double)-Maxb1 / Maxa1, 4);
 
 
-            while(true)
-            { 
-
-            Console.WriteLine("Enter Magnification upto 4 decimal point \n");
-
-            // Check for value other than numerics
-            
-            while (!Double.TryParse(Console.ReadLine(), out Input))
-            {               
-                Console.WriteLine("Please enter numeric value \n");
-
-                Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
-            }
-                                
-             
-
-            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy) && (Input <= InputMax) && (Input >= InputMin))
+            while (true)
             {
 
-                Console.WriteLine("Conditions satified \n");
+                Console.WriteLine("Enter Magnification upto 4 decimal point \n");
 
+                // Check for value other than numerics
 
-                //Calculate d1 and d2 for the Input Magnification
-
-                Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
-
-                Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
-
-                if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                while (!Double.TryParse(Console.ReadLine(), out Input))
                 {
-                    Maxd1 = 0;
+                    Console.WriteLine("Please enter numeric value \n");
+
+                    Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
                 }
+
+
+
+                if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy) && (Input <= InputMax) && (Input >= InputMin))
+                {
+
+                    Console.WriteLine("Conditions satified \n");
+
+
+                    //Calculate d1 and d2 for the Input Magnification
+
+                    Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
+
+                    Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
+
+                    if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                    {
+                        Maxd1 = 0;
+                    }
+                    else
+
+                        if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                        {
+                            Maxd2 = 0;
+                        }
+
+                    Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
+
+                }
+
                 else
 
-                    if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                    if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy))
                     {
-                        Maxd2 = 0;
+
+
+                        Console.WriteLine("Conditions didn't satified \n");
+
+                        Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+
+                        return Mintrackcal(F1, F2, F3);
+
                     }
-
-                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
-
-            }
-
-            else
-
-                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy))
-                {
-
-
-                    Console.WriteLine("Conditions didn't satified \n");
-
-                    Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
-
-                    return Mintrackcal(F1, F2, F3);
-
-                }
 
             }
             // return Mintrackcal(F1, F2, F3, MxratioMy, Maxtrack);
         }
 
 
-                
+
         static void Main(string[] args)
-        {                            
-                                 
+        {
+
 
             int k, l, m, n = 0;
 
@@ -413,14 +413,14 @@ namespace Permute_focal_lengths
 
                 Console.WriteLine("Enter Max Magnification upto 4 decimal point \n");
 
-               while(!Double.TryParse(Console.ReadLine(), out InputMax))
-               {
-                   Console.WriteLine("Please only input numeric value \n");
+                while (!Double.TryParse(Console.ReadLine(), out InputMax))
+                {
+                    Console.WriteLine("Please only input numeric value \n");
 
-                   Console.WriteLine("Enter Max Magnification upto 4 decimal point \n");
-               }
+                    Console.WriteLine("Enter Max Magnification upto 4 decimal point \n");
+                }
 
-               Console.WriteLine("\n");
+                Console.WriteLine("\n");
 
                 Console.WriteLine("Enter Min Magnification upto 4 decimal point \n");
 
@@ -436,7 +436,7 @@ namespace Permute_focal_lengths
                 Console.WriteLine("\n");
 
                 Console.WriteLine("Enter 0 or 1 to see all combinations with each resutls or d1 and d2 for Max Mag respectively \n");
-   
+
                 string input = Console.ReadLine();
 
                 Console.WriteLine("\n");
@@ -605,30 +605,30 @@ namespace Permute_focal_lengths
 
                                             Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[k], focallength2[l], focallength3[m]);
 
-                                        }                                  
+                                        }
 
                                 }
 
                             }
 
                         }
-                           
+
 
                         break;
 
                     case "1":
 
-                        perm(focallength1,focallength2,focallength3);
+                        perm(focallength1, focallength2, focallength3);
 
-                        break;                  
+                        break;
 
                     default:
 
                         Console.WriteLine("Please choose from (0) or (1) \n");
 
                         break;
-                }             
-                              
+                }
+
             }
 
 
