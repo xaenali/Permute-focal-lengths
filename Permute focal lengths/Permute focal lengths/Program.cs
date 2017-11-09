@@ -382,7 +382,7 @@ namespace Permute_focal_lengths
 
                 else
 
-                    if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy))
+                    if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy) || (Input >= InputMax) || (Input <= InputMin))
                     {
 
 
