@@ -25,12 +25,13 @@ namespace Permute_focal_lengths
         public static IList<double> F1List = new List<double>();
         public static IList<double> F2List = new List<double>();
         public static IList<double> F3List = new List<double>();
+      //  public static IList<double> 
         public static double[] Maxtrackstore = new double[27];
         public static double[] F1store = new double[3];
         public static double[] F2store = new double[3];
         public static double[] F3store = new double[3];
-        public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy, MaxInput, MinInput;
-        public static double Maxd1, Maxd2;        
+        public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy ;
+        public static double Maxd1, Maxd2,Input;        
         public static double[] d1forMx = new double[3];
         public static double[] d2forMx = new double[3];
         public static double[] d1forMy = new double[3];
@@ -43,16 +44,16 @@ namespace Permute_focal_lengths
         public static double[] d2forInputMin = new double[3];           
 
 
-        public static double perm(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
+        public static double perm(double[] F1, double[] F2, double[] F3)
         {
-            int o = 0, q = 0, r = 0, t = 0;            
+            int o = 0, q = 0, r = 0, t = 0, i, j, k;            
                               
-            for (int i = 0; i < F1.Length; i++)
+            for ( i = 0; i < F1.Length; i++)
             {           
                      
-                for (int j = 0; j < F2.Length; j++)
+                for ( j = 0; j < F2.Length; j++)
                 {                                                        
-                    for (int k = 0; k < F3.Length; k++)
+                    for ( k = 0; k < F3.Length; k++)
                     {                        
                         F1store[q] = F1[i];
 
@@ -91,33 +92,21 @@ namespace Permute_focal_lengths
 
                             MaxtrackList.Add(Maxtrackstore[o]);
 
-                            
-
-
-                         /*   d1forInputMax[k] = Math.Round((double)F1[i] + F2[j] + ((F1[i] * F2[j]) / (InputMax * F3[k])), 4);
-
-                            d2forInputMax[k] = Math.Round((double)F2[j] + F3[k] + ((F2[j] * F3[k] * InputMax) / (F1[i])), 4);
-
-                            if ((d1forInputMax[k] >= -0.012) && (d1forInputMax[k] < 0))
+                            if (MaxtrackList.Count() == MaxtrackList.Last() - 1)
                             {
-                                d1forInputMax[k] = 0;
-                            }
-                            else
+                                Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
 
-                                if ((d2forInputMax[k] >= -0.012) && (d2forInputMax[k] < 0))
-                                {
-                                    d2forInputMax[k] = 0;
-                                }
+                                Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-                            */
-                        
+                            }                                                    
                         } 
                         
                         else
 
                             if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
                            {
-                               
+                              // Console.WriteLine("Conditions didn't satified for comination");
+
                         //     Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} \n", InputMax, InputMin, Mx[k], My[k], F1[i], F2[j], F3[k]);
                                
                         
@@ -129,37 +118,26 @@ namespace Permute_focal_lengths
                   
                 }                
             }
+            //Console.WriteLine(MaxtrackList.IndexOf(MaxtrackList.Last()));
 
-            for (int p = 0; p < MaxtrackList.Count; p++)
+
+
+           for (int p = 0; p < MaxtrackList.Count; p++)
             { Console.WriteLine("{0} , {1} , {2}, {3} \n", F1List[p], F2List[p], F3List[p], MaxtrackList[p]); }
+            
 
-                       
+                // Get Maximum and Minimum value of Tracklength with respective Focal lengths  
 
-            // Get Maximum and Minimum value of Tracklength with respective Focal lengths  
+                Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3}", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
 
-            Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3}", MaxtrackList[MaxtrackList.IndexOf(MaxtrackList.Max())], F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
-
-            Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3}", MaxtrackList[MaxtrackList.IndexOf(MaxtrackList.Min())], F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
-
-                // Console.WriteLine(F1List[p]); 
-            //for (int d = 0; d < F2List.Count; d++)
-            //{ //Console.WriteLine(F2List[p]);
-            //for (int a = 0; a < F3List.Count; a++)
-            //{
-            //    Console.WriteLine("{0} , {1} , {2} "F1List,F2List, F3List);
-            //}
-            //}
-            //}
-                // for (int p = 0; p < MaxtrackList.Count; p++)
-
-                // Console.WriteLine("Maxtrack list = {0} ", MaxtrackList[p]);                            
+                Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3}", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
                 Console.WriteLine("\n");
                                  
-                return userinputs(F1, F2, F3, MxratioMy, Maxtrack);
+                return userinputs(F1, F2, F3);
         }     
 
-        public static double userinputs(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
+        public static double userinputs(double[] F1, double[] F2, double[] F3)
         {
             Console.WriteLine("\n");
 
@@ -178,11 +156,11 @@ namespace Permute_focal_lengths
 
                        case "a":
 
-                           return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack); 
+                           return Maxtractcal(F1, F2, F3); 
                        
                        case "b":
 
-                           return Mintrackcal(F1, F2, F3, MxratioMy, Maxtrack);
+                           return Mintrackcal(F1, F2, F3);
 
                        default:
 
@@ -192,44 +170,22 @@ namespace Permute_focal_lengths
                                              
                    }
                                    
-            return userinputs(F1, F2, F3, MxratioMy, Maxtrack);           
+            return userinputs(F1, F2, F3);           
             
          
         }
 
-        public static double Maxtractcal(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
+        public static double Maxtractcal(double[] F1, double[] F2, double[] F3)
         {
-            int o = 0, q = 0, r = 0, t = 0, a = 1;   
+            int a = 1;                          
 
-            for (int i = 0; i < F1.Length; i++)
-            {                
-                for (int j = 0; j < F2.Length; j++)
-                {
-                    for (int k = 0; k < F3.Length; k++)
-                    {
-                        F1store[q] = F1[i];
+            if(a == 1)
+            {
+                Console.WriteLine("Focallength choosed with Maxtrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
 
-                        F1List.Add(F1store[q]);
+                Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                        F2store[r] = F2[j];
-
-                        F2List.Add(F2store[j]);
-                        
-                        F3store[t] = F3[k];
-
-                        F3List.Add(F3store[t]);
-
-                        MxratioMy[k] = Math.Round((double)F1[i] / F3[k], 4);
-
-                        Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
-
-                        Maxtrackstore[o] = Maxtrack[k];
-
-                        MaxtrackList.Add(Maxtrackstore[o]);
-                        
-                    }
-
-                }
+                a = a + 1;
             }
 
             MaxF1 = F1List[MaxtrackList.IndexOf(MaxtrackList.Max())];
@@ -252,18 +208,7 @@ namespace Permute_focal_lengths
             MaxMx = Math.Round((double)-Maxa2 / Maxb2, 4);
 
             MaxMy = Math.Round((double)-Maxb1 / Maxa1, 4);
-                                       
 
-            if(a == 1)
-            {
-                Console.WriteLine("Focallength choosed with Maxtrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", Maxtrackstore.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
-
-               // Console.WriteLine("Focallength choosed with Maxtrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n",MaxtrackList[MaxtrackList.IndexOf(Maxtrack.Max())] , F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
-
-                Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
-
-                a = a + 1;
-            }
 
             while (true)
             {
@@ -272,7 +217,7 @@ namespace Permute_focal_lengths
                        
             // Check for value other than numerics
 
-            while(!Double.TryParse(Console.ReadLine(), out MaxInput))
+            while(!Double.TryParse(Console.ReadLine(), out Input))
             {             
 
                 Console.WriteLine("Please enter numeric value \n");
@@ -284,7 +229,7 @@ namespace Permute_focal_lengths
             Console.WriteLine("\n");                                               
             
             
-            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (MaxInput <= MaxMx) && (MaxInput >= MaxMy))
+            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy))
             {
 
                 Console.WriteLine("Conditions satified \n");
@@ -292,9 +237,9 @@ namespace Permute_focal_lengths
 
                 //Calculate d1 and d2 for the Input Magnification
 
-                Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (MaxInput * MaxF3)), 4);
+                Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
 
-                Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * MaxInput) / (MaxF1)), 4);
+                Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
 
                 if ((Maxd1 >= -0.012) && (Maxd1 < 0))
                 {
@@ -307,13 +252,13 @@ namespace Permute_focal_lengths
                         Maxd2 = 0;
                     }
 
-                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, MaxInput);
+                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
 
             }
 
             else
 
-                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (MaxInput > MaxMx) || (MaxInput < MaxMy))
+                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy))
                 {
 
 
@@ -321,7 +266,7 @@ namespace Permute_focal_lengths
 
                     Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                    return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
+                    return Maxtractcal(F1, F2, F3);
 
                 }
 
@@ -330,40 +275,19 @@ namespace Permute_focal_lengths
            // return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
         }            
 
-        public static double Mintrackcal(double[] F1, double[] F2, double[] F3, double[] MxratioMy, double[] Maxtrack)
-        {
-            int o = 0, q = 0, r = 0, t = 0, a = 1; 
-            
-            for (int i = 0; i < F1.Length; i++)
+        public static double Mintrackcal(double[] F1, double[] F2, double[] F3)
+        {        
+            int a = 1;
+
+            if(a == 1)
             {
-                for (int j = 0; j < F2.Length; j++)
-                {
-                    for (int k = 0; k < F3.Length; k++)
-                    {
-                        F1store[q] = F1[i];
 
-                        F1List.Add(F1store[q]);
+                Console.WriteLine("Focallength choosed with Mintrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-                        F2store[r] = F2[j];
+            Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                        F2List.Add(F2store[j]);
+            a = a + 1;
 
-                        F3store[t] = F3[k];
-
-                        F3List.Add(F3store[t]);
-
-                        MxratioMy[k] = Math.Round((double)F1[i] / F3[k], 4);
-
-                        Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
-
-                        Maxtrackstore[o] = Maxtrack[k];
-
-                        MaxtrackList.Add(Maxtrackstore[o]);
-
-
-                    }
-
-                }
             }
 
             MinF1 = F1List[MaxtrackList.IndexOf(MaxtrackList.Min())];
@@ -388,17 +312,6 @@ namespace Permute_focal_lengths
             MaxMy = Math.Round((double)-Maxb1 / Maxa1, 4);
 
 
-            if(a == 1)
-            {
-
-                Console.WriteLine("Focallength choosed with Mintrack = {0} are: F1 = {1}, F2 = {2}, F3 = {3} \n", Maxtrackstore.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
-
-            Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
-
-            a = a + 1;
-
-            }
-
             while(true)
             { 
 
@@ -406,7 +319,7 @@ namespace Permute_focal_lengths
 
             // Check for value other than numerics
             
-            while (!Double.TryParse(Console.ReadLine(), out MinInput))
+            while (!Double.TryParse(Console.ReadLine(), out Input))
             {               
                 Console.WriteLine("Please enter numeric value \n");
 
@@ -415,7 +328,7 @@ namespace Permute_focal_lengths
                                 
              
 
-            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (MinInput <= MaxMx) && (MinInput >= MaxMy))
+            if ((MaxMx > MaxMxratioMy) && (MaxMxratioMy > MaxMy) && (Input <= MaxMx) && (Input >= MaxMy))
             {
 
                 Console.WriteLine("Conditions satified \n");
@@ -423,9 +336,9 @@ namespace Permute_focal_lengths
 
                 //Calculate d1 and d2 for the Input Magnification
 
-                Maxd1 = Math.Round((double)MinF1 + MinF2 + ((MinF1 * MinF2) / (MinInput * MinF3)), 4);
+                Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (Input * MaxF3)), 4);
 
-                Maxd2 = Math.Round((double)MinF2 + MinF3 + ((MinF2 * MinF3 * MinInput) / (MinF1)), 4);
+                Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * Input) / (MaxF1)), 4);
 
                 if ((Maxd1 >= -0.012) && (Maxd1 < 0))
                 {
@@ -438,13 +351,13 @@ namespace Permute_focal_lengths
                         Maxd2 = 0;
                     }
 
-                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, MinInput);
+                Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, Input);
 
             }
 
             else
 
-                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (MinInput > MaxMx) || (MinInput < MaxMy))
+                if ((MaxMxratioMy > MaxMx) || (MaxMy > MaxMxratioMy) || (Input > MaxMx) || (Input < MaxMy))
                 {
 
 
@@ -452,7 +365,7 @@ namespace Permute_focal_lengths
 
                     Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                    return Mintrackcal(F1, F2, F3, MxratioMy, Maxtrack);
+                    return Mintrackcal(F1, F2, F3);
 
                 }
 
@@ -680,7 +593,7 @@ namespace Permute_focal_lengths
 
                     case "1":
 
-                        perm(focallength1,focallength2,focallength3,MxratioMy,Maxtrack);
+                        perm(focallength1,focallength2,focallength3);
 
                         break;                  
 
