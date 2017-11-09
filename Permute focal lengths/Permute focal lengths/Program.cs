@@ -11,33 +11,33 @@ namespace Permute_focal_lengths
         public static  double InputMax, InputMin;
         public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
         public static double Maxd1, Maxd2, Input;
-        public static IList<double> Mx = new List<double>();
-        public static IList<double> My = new List<double>();
-        public static IList<double> a1 = new List<double>();
-        public static IList<double> a2 = new List<double>();
-        public static IList<double> b1 = new List<double>();
-        public static IList<double> b2 = new List<double>();
-        public static IList<double> MxratioMy = new List<double>();
-        public static IList<double> Maxtrack = new List<double>();
-        public static IList<double> Maxlengths = new List<double>();
-        public static IList<double> Maxtrackstore = new List<double>();
-        public static IList<double> F1store = new List<double>();
-        public static IList<double> F2store = new List<double>();
-        public static IList<double> F3store = new List<double>();
-        public static IList<double> d1forMx = new List<double>();
-        public static IList<double> d2forMx = new List<double>();
-        public static IList<double> d1forMy = new List<double>();
-        public static IList<double> d2forMy = new List<double>();
-        public static IList<double> d1forMxratioMy = new List<double>();
-        public static IList<double> d2forMxratioMy = new List<double>();
-        public static IList<double> d1forInputMax = new List<double>();
-        public static IList<double> d2forInputMax = new List<double>();
-        public static IList<double> d1forInputMin = new List<double>();
-        public static IList<double> d2forInputMin = new List<double>();
-        public static IList<double> MaxtrackList = new List<double>();
-        public static IList<double> F1List = new List<double>();
-        public static IList<double> F2List = new List<double>();
-        public static IList<double> F3List = new List<double>();
+        public static IList<double> Mx = new List<double>() { };
+        public static IList<double> My = new List<double>() { };
+        public static IList<double> a1 = new List<double>() { };
+        public static IList<double> a2 = new List<double>() { };
+        public static IList<double> b1 = new List<double>() { };
+        public static IList<double> b2 = new List<double>() { };
+        public static IList<double> MxratioMy = new List<double>() { };
+        public static IList<double> Maxtrack = new List<double>() { };
+        public static IList<double> Maxlengths = new List<double>() { };
+        public static IList<double> Maxtrackstore = new List<double>() { };
+        public static IList<double> F1store = new List<double>() { };
+        public static IList<double> F2store = new List<double>() { };
+        public static IList<double> F3store = new List<double>() { };
+        public static IList<double> d1forMx = new List<double>() { };
+        public static IList<double> d2forMx = new List<double>() { };
+        public static IList<double> d1forMy = new List<double>() { };
+        public static IList<double> d2forMy = new List<double>() { };
+        public static IList<double> d1forMxratioMy = new List<double>() { };
+        public static IList<double> d2forMxratioMy = new List<double>() { };
+        public static IList<double> d1forInputMax = new List<double>() { };
+        public static IList<double> d2forInputMax = new List<double>() { };
+        public static IList<double> d1forInputMin = new List<double>() { };
+        public static IList<double> d2forInputMin = new List<double>() { };
+        public static IList<double> MaxtrackList = new List<double>() { };
+        public static IList<double> F1List = new List<double>() { };
+        public static IList<double> F2List = new List<double>() { };
+        public static IList<double> F3List = new List<double>() { };
         public static IList<double> focallength1 = new List<double>() { 130, 140, 150 };
         public static IList<double> focallength2 = new List<double>() { -19, -20, -21 };
         public static IList<double> focallength3 = new List<double>() { 70, 71, 72 };
@@ -75,9 +75,8 @@ namespace Permute_focal_lengths
 
         public static double perm(IList<double> F1, IList<double> F2, IList<double> F3)
         {
-           // int o = 0, q = 0, r = 0, t = 0; 
 
-            int i, j, k, o = 0;            
+            int i, j, k;            
                               
             for ( i = 0; i < F1.Count; i++)
             {           
@@ -118,29 +117,16 @@ namespace Permute_focal_lengths
 
                             Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
 
-                        //    Maxtrack.Add(Math.Round((double)F1List[i] + 2 * F2List[j] + F3List[k] + (F2List[j] * (((F3List[k] * MxratioMy[k]) / F1List[i]) + F1List[i] / (F3List[k] * MxratioMy[k]))), 4)); 
 
                      //       Maxtrackstore = Maxtrack;
 
                             MaxtrackList.Add(Maxtrack[k]);
-
-                            if (MaxtrackList.Count() == MaxtrackList.Last() - 1)
-                            {
-                                Console.WriteLine("Maxtrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Max(), F1List[MaxtrackList.IndexOf(MaxtrackList.Max())], F2List[MaxtrackList.IndexOf(MaxtrackList.Max())], F3List[MaxtrackList.IndexOf(MaxtrackList.Max())]);
-
-                                Console.WriteLine("Mintrackvalue = {0} with F1 = {1}, F2 = {2} and F3 = {3} \n", MaxtrackList.Min(), F1List[MaxtrackList.IndexOf(MaxtrackList.Min())], F2List[MaxtrackList.IndexOf(MaxtrackList.Min())], F3List[MaxtrackList.IndexOf(MaxtrackList.Min())]);
-
-                            }                                                    
                         } 
                         
                         else
 
                             if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
                            {
-                              // Console.WriteLine("Conditions didn't satified for comination");
-
-                        //     Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} \n", InputMax, InputMin, Mx[k], My[k], F1[i], F2[j], F3[k]);
-                               
                         
                           }
 
@@ -155,7 +141,9 @@ namespace Permute_focal_lengths
 
 
            for (int p = 0; p < MaxtrackList.Count; p++)
-            { Console.WriteLine("{0} , {1} , {2}, {3} \n", F1List[p], F2List[p], F3List[p], MaxtrackList[p]); }
+            { 
+               Console.WriteLine("{0} , {1} , {2}, {3} \n", F1List[p], F2List[p], F3List[p], MaxtrackList[p]); 
+           }
             
 
                 // Get Maximum and Minimum value of Tracklength with respective Focal lengths  
@@ -464,19 +452,19 @@ namespace Permute_focal_lengths
                                 for (m = 0; m < focallength3.Count; m++) // take f3
                                 {
 
-                                    a1[m] = Math.Round((double)focallength1[k] + focallength2[l], 4);
+                                    a1.Add(Math.Round((double)focallength1[k] + focallength2[l], 4));
 
-                                    MxratioMy[m] = Math.Round((double)focallength1[k] / focallength3[m], 4);
+                                    MxratioMy.Add(Math.Round((double)focallength1[k] / focallength3[m], 4));
 
-                                    a2[m] = Math.Round((double)focallength2[l] + focallength3[m], 4);
+                                    a2.Add(Math.Round((double)focallength2[l] + focallength3[m], 4));
 
-                                    b1[m] = Math.Round((double)(focallength1[k] * focallength2[l]) / focallength3[m], 4);
+                                    b1.Add(Math.Round((double)(focallength1[k] * focallength2[l]) / focallength3[m], 4));
 
-                                    b2[m] = Math.Round((double)(focallength2[l] * focallength3[m]) / focallength1[k], 4);
+                                    b2.Add(Math.Round((double)(focallength2[l] * focallength3[m]) / focallength1[k], 4));
 
-                                    Mx[m] = Math.Round((double)-a2[m] / b2[m], 4);
+                                    Mx.Add(Math.Round((double)-a2[m] / b2[m], 4));
 
-                                    My[m] = Math.Round((double)-b1[m] / a1[m], 4);
+                                    My.Add(Math.Round((double)-b1[m] / a1[m], 4));
 
 
                                     //comparison with Mx and My magnifications
@@ -495,9 +483,9 @@ namespace Permute_focal_lengths
 
                                         //Calculate d1 and d2 for the Input Max and Min Magnification
 
-                                        d1forInputMax[m] = Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (InputMax * focallength3[m])), 4);
+                                        d1forInputMax.Add(Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (InputMax * focallength3[m])), 4));
 
-                                        d2forInputMax[m] = Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * InputMax) / (focallength1[l])), 4);
+                                        d2forInputMax.Add(Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * InputMax) / (focallength1[l])), 4));
 
                                         // Check for very small negative distance value and convert them to zero
 
@@ -514,9 +502,9 @@ namespace Permute_focal_lengths
 
                                         Console.WriteLine("The system has d1 = {0} and d2 = {1} for Max magnification Input = {2} ", d1forInputMax[m], d2forInputMax[m], InputMax);
 
-                                        d1forInputMin[m] = Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (InputMin * focallength3[m])), 4);
+                                        d1forInputMin.Add(Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (InputMin * focallength3[m])), 4));
 
-                                        d2forInputMin[m] = Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * InputMin) / (focallength1[k])), 4);
+                                        d2forInputMin.Add(Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * InputMin) / (focallength1[k])), 4));
 
                                         if ((d1forInputMin[m] >= -0.012) && (d1forInputMin[m] < 0))
                                         {
@@ -534,9 +522,9 @@ namespace Permute_focal_lengths
 
                                         // Calculate Max d1 and d2 for Max magnification
 
-                                        d1forMx[m] = Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (Mx[m] * focallength3[m])), 4);
+                                        d1forMx.Add(Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (Mx[m] * focallength3[m])), 4));
 
-                                        d2forMx[m] = Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * Mx[m]) / (focallength1[k])), 4);
+                                        d2forMx.Add(Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * Mx[m]) / (focallength1[k])), 4));
 
                                         if ((d1forMx[m] >= -0.012) && (d1forMx[m] < 0))
                                         {
@@ -554,9 +542,9 @@ namespace Permute_focal_lengths
 
                                         // Calculate d1 and d2 for Minimum magnification
 
-                                        d1forMy[m] = Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (My[m] * focallength3[m])), 4);
+                                        d1forMy.Add(Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (My[m] * focallength3[m])), 4));
 
-                                        d2forMy[m] = Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * My[m]) / (focallength1[k])), 4);
+                                        d2forMy.Add(Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * My[m]) / (focallength1[k])), 4));
 
                                         if ((d1forMy[m] >= -0.012) && (d1forMy[m] < 0))
                                         {
@@ -574,14 +562,14 @@ namespace Permute_focal_lengths
 
                                         // Calculate Max track length and d1 and d2 for that
 
-                                        Maxtrack[m] = Math.Round((double)focallength1[k] + 2 * focallength2[l] + focallength3[m] + (focallength2[l] * (((focallength3[m] * MxratioMy[m]) / focallength1[k]) + focallength1[k] / (focallength3[m] * MxratioMy[m]))), 4);
+                                        Maxtrack.Add(Math.Round((double)focallength1[k] + 2 * focallength2[l] + focallength3[m] + (focallength2[l] * (((focallength3[m] * MxratioMy[m]) / focallength1[k]) + focallength1[k] / (focallength3[m] * MxratioMy[m]))), 4));
 
 
                                         Console.WriteLine("The total system length (d1+d2) = {0} for Magnification = {1} with F1 = {2}, F2 = {3} and F3 = {4} ", Maxtrack[m], MxratioMy[m], focallength1[k], focallength2[l], focallength3[m]);
 
-                                        d1forMxratioMy[m] = Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (MxratioMy[m] * focallength3[m])), 4);
+                                        d1forMxratioMy.Add(Math.Round((double)focallength1[k] + focallength2[l] + ((focallength1[k] * focallength2[l]) / (MxratioMy[m] * focallength3[m])), 4));
 
-                                        d2forMxratioMy[m] = Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * MxratioMy[m]) / (focallength1[k])), 4);
+                                        d2forMxratioMy.Add(Math.Round((double)focallength2[l] + focallength3[m] + ((focallength2[l] * focallength3[m] * MxratioMy[m]) / (focallength1[k])), 4));
 
                                         if ((d1forMxratioMy[m] >= -0.012) && (d1forMxratioMy[m] < 0))
                                         {
