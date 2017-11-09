@@ -9,6 +9,42 @@ namespace Permute_focal_lengths
     {
      
         public static  double InputMax, InputMin;
+        public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
+        public static double Maxd1, Maxd2, Input;      
+        //public static IList<double> Mx = new List<double>();
+        //public static IList<double> My = new List<double>();
+        //public static IList<double> a1 = new List<double>();
+        //public static IList<double> a2 = new List<double>();
+        //public static IList<double> b1 = new List<double>();
+        //public static IList<double> b2 = new List<double>();
+        //public static IList<double> MxratioMy = new List<double>();
+        //public static IList<double> Maxtrack = new List<double>();
+        //public static IList<double> Maxlengths = new List<double>();
+        //public static IList<double> Maxtrackstore = new List<double>();
+        //public static IList<double> F1store = new List<double>();
+        //public static IList<double> F2store = new List<double>();
+        //public static IList<double> F3store = new List<double>();
+        //public static IList<double> d1forMx = new List<double>();
+        //public static IList<double> d2forMx = new List<double>();
+        //public static IList<double> d1forMy = new List<double>();
+        //public static IList<double> d2forMy = new List<double>();
+        //public static IList<double> d1forMxratioMy = new List<double>();
+        //public static IList<double> d2forMxratioMy = new List<double>();
+        //public static IList<double> d1forInputMax = new List<double>();
+        //public static IList<double> d2forInputMax = new List<double>();
+        //public static IList<double> d1forInputMin = new List<double>();
+        //public static IList<double> d2forInputMin = new List<double>();
+        public static IList<double> MaxtrackList = new List<double>();
+        public static IList<double> F1List = new List<double>();
+        public static IList<double> F2List = new List<double>();
+        public static IList<double> F3List = new List<double>();
+        //public static IList<double> focallength1 = new List<double>() { 130, 140, 150 };
+        //public static IList<double> focallength2 = new List<double>() {-19, -20 , -21 };
+        //public static IList<double> focallength3 = new List<double>() {70 , 71, 72 };
+
+
+
+
         public static double[] Mx = new double[3];
         public static double[] My = new double[3];
         public static double[] a1 = new double[3];
@@ -16,22 +52,15 @@ namespace Permute_focal_lengths
         public static double[] b1 = new double[3];
         public static double[] b2 = new double[3];
         public static double[] MxratioMy = new double[3];
-        public static double[] Maxtrack = new double[27];       
-        public static double[] Maxlengths = new double[3];  
+        public static double[] Maxtrack = new double[27];
+        public static double[] Maxlengths = new double[3];
         public static double[] focallength1 = new double[] { 130, 140, 150 }; // Initialize array for focal length 1
         public static double[] focallength2 = new double[] { -19, -20, -21 }; // Initialize array for focal length 2
         public static double[] focallength3 = new double[] { 70, 71, 72 }; //Initialize array for focal length 3
-        public static IList<double> MaxtrackList = new List<double>();
-        public static IList<double> F1List = new List<double>();
-        public static IList<double> F2List = new List<double>();
-        public static IList<double> F3List = new List<double>();
-      //  public static IList<double> 
         public static double[] Maxtrackstore = new double[27];
         public static double[] F1store = new double[3];
         public static double[] F2store = new double[3];
         public static double[] F3store = new double[3];
-        public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy ;
-        public static double Maxd1, Maxd2,Input;        
         public static double[] d1forMx = new double[3];
         public static double[] d2forMx = new double[3];
         public static double[] d1forMy = new double[3];
@@ -135,7 +164,7 @@ namespace Permute_focal_lengths
                 Console.WriteLine("\n");
                                  
                 return userinputs(F1, F2, F3);
-        }     
+        }
 
         public static double userinputs(double[] F1, double[] F2, double[] F3)
         {
@@ -273,7 +302,7 @@ namespace Permute_focal_lengths
             }
 
            // return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
-        }            
+        }
 
         public static double Mintrackcal(double[] F1, double[] F2, double[] F3)
         {        
