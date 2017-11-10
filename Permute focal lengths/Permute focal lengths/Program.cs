@@ -38,9 +38,12 @@ namespace Permute_focal_lengths
         public static IList<double> F1List = new List<double>() { };
         public static IList<double> F2List = new List<double>() { };
         public static IList<double> F3List = new List<double>() { };
-        public static IList<double> focallength1 = new List<double>() { 140 };
-        public static IList<double> focallength2 = new List<double>() { -20 };
-        public static IList<double> focallength3 = new List<double>() { 70, 1, 2 };
+
+        // 3 focal lengths must have equal number of elemnets otherwise there will be an exception for arguments out of range 
+
+        public static IList<double> focallength1 = new List<double>() { 140, 140, 140 }; // Initialize List for focal length 1
+        public static IList<double> focallength2 = new List<double>() { -20, -20, -35 }; // Initialize List for focal length 2
+        public static IList<double> focallength3 = new List<double>() { 70, 1, 2 };     // Initialize List for focal length 3
 
 
         public static double perm(IList<double> F1, IList<double> F2, IList<double> F3)
