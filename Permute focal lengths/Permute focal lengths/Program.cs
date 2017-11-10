@@ -24,9 +24,9 @@ namespace Permute_focal_lengths
         public static double[] MxratioMy = new double[3];
         public static double[] Maxtrack = new double[27];
         public static double[] Maxlengths = new double[3];
-        public static double[] focallength1 = new double[] { 130, 140, 150 }; // Initialize array for focal length 1
-        public static double[] focallength2 = new double[] { -19, -20, -21 }; // Initialize array for focal length 2
-        public static double[] focallength3 = new double[] { 70, 71, 72 }; //Initialize array for focal length 3
+        public static double[] focallength1 = new double[] { 140, 140, 140 }; // Initialize array for focal length 1
+        public static double[] focallength2 = new double[] { -20, -20, -20 }; // Initialize array for focal length 2
+        public static double[] focallength3 = new double[] { 1, 70, 71 }; //Initialize array for focal length 3
         public static double[] Maxtrackstore = new double[27];
         public static double[] F1store = new double[3];
         public static double[] F2store = new double[3];
