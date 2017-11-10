@@ -11,40 +11,10 @@ namespace Permute_focal_lengths
         public static double InputMax, InputMin;
         public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
         public static double Maxd1, Maxd2, Input;
-        //public static IList<double> Mx = new List<double>();
-        //public static IList<double> My = new List<double>();
-        //public static IList<double> a1 = new List<double>();
-        //public static IList<double> a2 = new List<double>();
-        //public static IList<double> b1 = new List<double>();
-        //public static IList<double> b2 = new List<double>();
-        //public static IList<double> MxratioMy = new List<double>();
-        //public static IList<double> Maxtrack = new List<double>();
-        //public static IList<double> Maxlengths = new List<double>();
-        //public static IList<double> Maxtrackstore = new List<double>();
-        //public static IList<double> F1store = new List<double>();
-        //public static IList<double> F2store = new List<double>();
-        //public static IList<double> F3store = new List<double>();
-        //public static IList<double> d1forMx = new List<double>();
-        //public static IList<double> d2forMx = new List<double>();
-        //public static IList<double> d1forMy = new List<double>();
-        //public static IList<double> d2forMy = new List<double>();
-        //public static IList<double> d1forMxratioMy = new List<double>();
-        //public static IList<double> d2forMxratioMy = new List<double>();
-        //public static IList<double> d1forInputMax = new List<double>();
-        //public static IList<double> d2forInputMax = new List<double>();
-        //public static IList<double> d1forInputMin = new List<double>();
-        //public static IList<double> d2forInputMin = new List<double>();
         public static IList<double> MaxtrackList = new List<double>();
         public static IList<double> F1List = new List<double>();
         public static IList<double> F2List = new List<double>();
         public static IList<double> F3List = new List<double>();
-        //public static IList<double> focallength1 = new List<double>() { 130, 140, 150 };
-        //public static IList<double> focallength2 = new List<double>() {-19, -20 , -21 };
-        //public static IList<double> focallength3 = new List<double>() {70 , 71, 72 };
-
-
-
-
         public static double[] Mx = new double[3];
         public static double[] My = new double[3];
         public static double[] a1 = new double[3];
@@ -75,7 +45,7 @@ namespace Permute_focal_lengths
 
         public static double perm(double[] F1, double[] F2, double[] F3)
         {
-            int i, j, k, o = 0;
+            int i, j, k;
 
             for (i = 0; i < F1.Length; i++)
             {
@@ -109,11 +79,7 @@ namespace Permute_focal_lengths
 
                             Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
 
-                            Maxtrackstore[o] = Maxtrack[k];
-
-                            MaxtrackList.Add(Maxtrackstore[o]);
-
-                            double length = MaxtrackList.Count;
+                            MaxtrackList.Add(Maxtrack[k]);
 
                         }
 
