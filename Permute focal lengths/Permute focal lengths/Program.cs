@@ -24,9 +24,9 @@ namespace Permute_focal_lengths
         public static double[] MxratioMy = new double[3];
         public static double[] Maxtrack = new double[27];
         public static double[] Maxlengths = new double[3];
-        public static double[] focallength1 = new double[] { 140, 140, 140 }; // Initialize array for focal length 1
-        public static double[] focallength2 = new double[] { -20, -20, -20 }; // Initialize array for focal length 2
-        public static double[] focallength3 = new double[] { 1, 70, 71 }; //Initialize array for focal length 3
+        public static double[] focallength1 = new double[] { 130, 140, 150 }; // Initialize array for focal length 1
+        public static double[] focallength2 = new double[] { -19, -20, -21 }; // Initialize array for focal length 2
+        public static double[] focallength3 = new double[] { 70, 1, 2 }; //Initialize array for focal length 3
         public static double[] Maxtrackstore = new double[27];
         public static double[] F1store = new double[3];
         public static double[] F2store = new double[3];
@@ -54,11 +54,6 @@ namespace Permute_focal_lengths
                 {
                     for (k = 0; k < F3.Length; k++)
                     {
-                        F1List.Add(F1[i]);
-
-                        F2List.Add(F2[j]);
-
-                        F3List.Add(F3[k]);
 
                         a1[k] = Math.Round((double)F1[i] + F2[j], 4);
 
@@ -76,6 +71,11 @@ namespace Permute_focal_lengths
 
                         if ((Mx[k] > MxratioMy[k]) && (MxratioMy[k] > My[k]) && (InputMax <= Mx[k]) && (InputMin >= My[k]) && (InputMax > InputMin) && (InputMin < InputMax))
                         {
+                            F1List.Add(F1[i]);
+
+                            F2List.Add(F2[j]);
+
+                            F3List.Add(F3[k]);
 
                             Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
 
