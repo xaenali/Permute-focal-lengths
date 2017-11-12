@@ -15,32 +15,32 @@ namespace Permute_focal_lengths
         public static IList<double> F1List = new List<double>();
         public static IList<double> F2List = new List<double>();
         public static IList<double> F3List = new List<double>();
-        public static double[] Mx = new double[3];
-        public static double[] My = new double[3];
-        public static double[] a1 = new double[3];
-        public static double[] a2 = new double[3];
-        public static double[] b1 = new double[3];
-        public static double[] b2 = new double[3];
-        public static double[] MxratioMy = new double[3];
+        public static double[] Mx = new double[27];
+        public static double[] My = new double[27];
+        public static double[] a1 = new double[27];
+        public static double[] a2 = new double[27];
+        public static double[] b1 = new double[27];
+        public static double[] b2 = new double[27];
+        public static double[] MxratioMy = new double[27];
         public static double[] Maxtrack = new double[27];
-        public static double[] Maxlengths = new double[3];
+        public static double[] Maxlengths = new double[27];
         public static double[] focallength1 = new double[] { 130, 140, 150 }; // Initialize array for focal length 1
         public static double[] focallength2 = new double[] { -19, -20, -21 }; // Initialize array for focal length 2
         public static double[] focallength3 = new double[] { 70, 1, 2 }; //Initialize array for focal length 3
         public static double[] Maxtrackstore = new double[27];
-        public static double[] F1store = new double[3];
-        public static double[] F2store = new double[3];
-        public static double[] F3store = new double[3];
-        public static double[] d1forMx = new double[3];
-        public static double[] d2forMx = new double[3];
-        public static double[] d1forMy = new double[3];
-        public static double[] d2forMy = new double[3];
-        public static double[] d1forMxratioMy = new double[3];
-        public static double[] d2forMxratioMy = new double[3];
-        public static double[] d1forInputMax = new double[3];
-        public static double[] d2forInputMax = new double[3];
-        public static double[] d1forInputMin = new double[3];
-        public static double[] d2forInputMin = new double[3];
+        public static double[] F1store = new double[27];
+        public static double[] F2store = new double[27];
+        public static double[] F3store = new double[27];
+        public static double[] d1forMx = new double[27];
+        public static double[] d2forMx = new double[27];
+        public static double[] d1forMy = new double[27];
+        public static double[] d2forMy = new double[27];
+        public static double[] d1forMxratioMy = new double[27];
+        public static double[] d2forMxratioMy = new double[27];
+        public static double[] d1forInputMax = new double[27];
+        public static double[] d2forInputMax = new double[27];
+        public static double[] d1forInputMin = new double[27];
+        public static double[] d2forInputMin = new double[27];
 
 
         public static double perm(double[] F1, double[] F2, double[] F3)
@@ -94,6 +94,11 @@ namespace Permute_focal_lengths
                     }
 
                 }
+            }
+
+            for(int d = 0; d < MxratioMy.Length; d++)
+            {
+                Console.WriteLine("MxratioMy = {0} \n", MxratioMy[d]);
             }
 
             //check for emptiness of a List for no suitable combination of focal length
