@@ -144,7 +144,7 @@ namespace Permute_focal_lengths
 
                         templist.Add(Maxtrack[k]);
 
-                        if ((Mx[k] > MxratioMy[k]) && (MxratioMy[k] > My[k]) && (InputMax <= Mx[k]) && (InputMin >= My[k]) && (InputMax > InputMin) && (InputMin < InputMax))
+                        if ((Mx[k] > MxratioMy[k]) && (MxratioMy[k] > My[k]) && (InputMax <= Mx[k]) && (InputMin >= My[k]) && (InputMax > InputMin) && (InputMin < InputMax) && (Maxtrack[k] > 0))
                         {
                             F1List.Add(F1[i]);
 
@@ -163,7 +163,7 @@ namespace Permute_focal_lengths
 
                         else
 
-                            if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
+                            if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin) || (Maxtrack[k] < 0))
                         {
 
                             // Do nothing here just ignore the values
