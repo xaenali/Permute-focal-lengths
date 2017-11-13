@@ -223,6 +223,8 @@ namespace Permute_focal_lengths
 
                         Console.WriteLine("The Mintrackvalue can provide Max Magnifiaction = {0} and Min Magnification = {1} \n", MxList[MaxtrackList.IndexOf(MaxtrackList.Min())], MyList[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
+                        Console.WriteLine("");
+
                     }
                 }
 
