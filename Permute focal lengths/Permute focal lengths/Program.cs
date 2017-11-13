@@ -42,7 +42,7 @@ namespace Permute_focal_lengths
             //Create COM Objects. Create a COM object for everything that is referenced
             Excel.Application xlApp = new Excel.Application();
 
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\MyPC\source\repos\Permute-focal-lengths\Permute focal lengths\Permute focal lengths\focal2.xlsx");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Ali\Source\Repos\Permute-focal-lengths\Permute focal lengths\Permute focal lengths\focal2.xlsx");
 
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
 
