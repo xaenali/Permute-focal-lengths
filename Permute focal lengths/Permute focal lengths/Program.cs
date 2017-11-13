@@ -7,7 +7,7 @@ namespace Permute_focal_lengths
 {
     class Program
     {
-
+        //----------------------
         public static double InputMax, InputMin;
         public static double MaxF1, MaxF2, MaxF3, MinF1, MinF2, MinF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
         public static double Maxd1, Maxd2, Input;
