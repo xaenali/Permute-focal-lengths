@@ -601,7 +601,7 @@ namespace Permute_focal_lengths
 
                                     //comparison with Mx and My magnifications
 
-                                    if ((Mx[m] > MxratioMy[m]) && (MxratioMy[m] > My[m]) && (InputMax <= Mx[m]) && (InputMin >= My[m]) && (InputMax > InputMin))
+                                    if ((Mx[m] > MxratioMy[m]) && (MxratioMy[m] > My[m]) && (InputMax <= Mx[m]) && (InputMin >= My[m]) && (InputMax > InputMin) && (EPD1[k] > EPDConstrain) && (EPD1[k] == EPD2[k]))
                                     {
                                         n = n + 1;
 
@@ -722,7 +722,7 @@ namespace Permute_focal_lengths
 
                                     else
 
-                                        if ((MxratioMy[m] > Mx[m]) || (My[m] > MxratioMy[m]) || (InputMax > Mx[m]) || (InputMin < My[m]) || (InputMax < InputMin))
+                                        if ((MxratioMy[m] > Mx[m]) || (My[m] > MxratioMy[m]) || (InputMax > Mx[m]) || (InputMin < My[m]) || (InputMax < InputMin) || (EPD1[k] < EPDConstrain) || (EPD1[k] != EPD2[k]))
                                         {
                                             n = n + 1;
 
