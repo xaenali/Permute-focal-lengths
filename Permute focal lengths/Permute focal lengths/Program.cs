@@ -50,11 +50,11 @@ namespace Permute_focal_lengths
 
             // get used range of column F
 
-            Excel.Range F1range = xlWorksheet.UsedRange.Columns["A", Type.Missing];
+            Excel.Range F1range = xlWorksheet.UsedRange.Columns["D", Type.Missing];
 
-            Excel.Range F2range = xlWorksheet.UsedRange.Columns["B", Type.Missing];
+            Excel.Range F2range = xlWorksheet.UsedRange.Columns["E", Type.Missing];
 
-            Excel.Range F3range = xlWorksheet.UsedRange.Columns["C", Type.Missing];
+            Excel.Range F3range = xlWorksheet.UsedRange.Columns["F", Type.Missing];
 
 
             // get number of used rows in column A, B and C
@@ -69,17 +69,17 @@ namespace Permute_focal_lengths
 
             for (int i = 2; i <= F1rngCount; i++)
             {
-                focallength1.Add(xlWorksheet.Cells[i, "A"].Value());
+                focallength1.Add(xlWorksheet.Cells[i, "D"].Value());
             }
 
             for (int j = 2; j <= F2rngCount; j++)
             {
-                focallength2.Add(xlWorksheet.Cells[j, "B"].Value());
+                focallength2.Add(xlWorksheet.Cells[j, "E"].Value());
             }
 
             for (int k = 2; k <= F3rngCount; k++)
             {
-                focallength3.Add(xlWorksheet.Cells[k, "C"].Value());
+                focallength3.Add(xlWorksheet.Cells[k, "F"].Value());
             }
 
 
@@ -202,7 +202,7 @@ namespace Permute_focal_lengths
 
                         Console.WriteLine("The Mintrackvalue can provide Max Magnifiaction = {0} and Min Magnification = {1} \n", MxList[MaxtrackList.IndexOf(MaxtrackList.Min())], MyList[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-                        Console.WriteLine("/nRecommended option is b /n/n");
+                        Console.WriteLine("\nRecommended option is b \n\n");
                     }
                 }
 
