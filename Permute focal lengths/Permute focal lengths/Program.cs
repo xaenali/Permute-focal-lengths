@@ -10,7 +10,7 @@ namespace Permute_focal_lengths
     class Program
     {
 
-        public static double InputMax, InputMin;
+        public static double InputMax, InputMin, InputbeamDia, EPDConstrain;
         public static IList<double> MaxtrackList = new List<double>();
         public static IList<double> F1List = new List<double>();
         public static IList<double> F2List = new List<double>();
@@ -29,8 +29,12 @@ namespace Permute_focal_lengths
         public static List<double> focallength1 = new List<double>(); // Initialize array for focal length 1
         public static List<double> focallength2 = new List<double>(); // Initialize array for focal length 2
         public static List<double> focallength3 = new List<double>(); // Initialize array for focal length 3
+        public static List<double> EPD1 = new List<double>(); // Initialize List for Entrance pupil Dia 1
+        public static List<double> EPD2 = new List<double>(); // Initialize List for Entrance pupil Dia  2
+        public static List<double> EPD3 = new List<double>(); // Initialize List for fEntrance pupil Dia  3
 
 
+        // Main Program
 
         public static void getExcelFile()
         {
@@ -38,6 +42,9 @@ namespace Permute_focal_lengths
             double F1rngCount;
             double F2rngCount;
             double F3rngCount;
+            double EPD1rngCount;
+            double EPD2rngCount;
+            double EPD3rngCount;
 
             //Create COM Objects. Create a COM object for everything that is referenced
             Excel.Application xlApp = new Excel.Application();
@@ -48,13 +55,20 @@ namespace Permute_focal_lengths
 
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
-            // get used range of column F
+            // get used range of column Focal length columns
 
             Excel.Range F1range = xlWorksheet.UsedRange.Columns["A", Type.Missing];
 
-            Excel.Range F2range = xlWorksheet.UsedRange.Columns["B", Type.Missing];
+            Excel.Range F2range = xlWorksheet.UsedRange.Columns["C", Type.Missing];
 
-            Excel.Range F3range = xlWorksheet.UsedRange.Columns["C", Type.Missing];
+            Excel.Range F3range = xlWorksheet.UsedRange.Columns["E", Type.Missing];
+
+            Excel.Range EPD1range = xlWorksheet.UsedRange.Columns["B", Type.Missing];
+
+            Excel.Range EPD2range = xlWorksheet.UsedRange.Columns["D", Type.Missing];
+
+            Excel.Range EPD3range = xlWorksheet.UsedRange.Columns["F", Type.Missing];
+
 
 
             // get number of used rows in column A, B and C
@@ -65,7 +79,14 @@ namespace Permute_focal_lengths
 
             F3rngCount = F3range.Rows.Count;
 
-            // iterate over column A, B and C's used row count and store values to the list
+            EPD1rngCount = EPD1range.Rows.Count;
+
+            EPD2rngCount = EPD2range.Rows.Count;
+
+            EPD3rngCount = EPD3range.Rows.Count;
+
+
+            // iterate over column A, C and E's used row count and store values to the list for Focal lengths
 
             for (int i = 2; i <= F1rngCount; i++)
             {
@@ -74,12 +95,30 @@ namespace Permute_focal_lengths
 
             for (int j = 2; j <= F2rngCount; j++)
             {
-                focallength2.Add(xlWorksheet.Cells[j, "B"].Value());
+                focallength2.Add(xlWorksheet.Cells[j, "C"].Value());
             }
 
             for (int k = 2; k <= F3rngCount; k++)
             {
-                focallength3.Add(xlWorksheet.Cells[k, "C"].Value());
+                focallength3.Add(xlWorksheet.Cells[k, "E"].Value());
+            }
+
+            // iterate over column B, D and F's used row count and store values to the list for Entracne puplil Dia
+
+
+            for (int i = 2; i <= EPD1rngCount; i++)
+            {
+                EPD1.Add(xlWorksheet.Cells[i, "B"].Value());
+            }
+
+            for (int j = 2; j <= EPD2rngCount; j++)
+            {
+                EPD2.Add(xlWorksheet.Cells[j, "D"].Value());
+            }
+
+            for (int k = 2; k <= EPD3rngCount; k++)
+            {
+                EPD3.Add(xlWorksheet.Cells[k, "F"].Value());
             }
 
 
@@ -114,7 +153,7 @@ namespace Permute_focal_lengths
 
         }
 
-        public static double perm(List<double> F1, List<double> F2, List<double> F3)
+        public static double perm(List<double> F1, List<double> F2, List<double> F3, List<double> EP1, List<double> EP2, List<double> EP3)
         {
             int i, j, k;
 
@@ -140,11 +179,13 @@ namespace Permute_focal_lengths
 
                         My[k] = Math.Round((double)-b1[k] / a1[k], 4);
 
+
+
                         Maxtrack[k] = Math.Round((double)F1[i] + 2 * F2[j] + F3[k] + (F2[j] * (((F3[k] * MxratioMy[k]) / F1[i]) + F1[i] / (F3[k] * MxratioMy[k]))), 4);
 
                         templist.Add(Maxtrack[k]);
 
-                        if ((Mx[k] > MxratioMy[k]) && (MxratioMy[k] > My[k]) && (InputMax <= Mx[k]) && (InputMin >= My[k]) && (InputMax > InputMin) && (InputMin < InputMax))
+                        if ((Mx[k] > MxratioMy[k]) && (MxratioMy[k] > My[k]) && (InputMax <= Mx[k]) && (InputMin >= My[k]) && (InputMax > InputMin) && (InputMin < InputMax) && (EPD1[k] > EPDConstrain) && (EPD1[k] == EPD2[k]))
                         {
                             F1List.Add(F1[i]);
 
@@ -163,7 +204,7 @@ namespace Permute_focal_lengths
 
                         else
 
-                            if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
+                            if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin) || (EPD1[k] < EPDConstrain) || (EPD1[k] != EPD2[k]))
                             {
 
                                 // Do nothing here just ignore the values
@@ -208,10 +249,10 @@ namespace Permute_focal_lengths
 
             Console.WriteLine("\n");
 
-            return userinputs(F1, F2, F3);
+            return userinputs(F1, F2, F3, EP1, EP2, EP3);
         }
 
-        public static double userinputs(List<double> F1, List<double> F2, List<double> F3)
+        public static double userinputs(List<double> F1, List<double> F2, List<double> F3, List<double> EP1, List<double> EP2, List<double> EP3)
         {
             Console.WriteLine("\n");
 
@@ -230,11 +271,11 @@ namespace Permute_focal_lengths
 
                 case "a":
 
-                    return Maxtractcal(F1, F2, F3);
+                    return Maxtractcal(F1, F2, F3, EP1, EP2, EP3);
 
                 case "b":
 
-                    return Mintrackcal(F1, F2, F3);
+                    return Mintrackcal(F1, F2, F3, EP1, EP2, EP3);
 
                 default:
 
@@ -244,12 +285,12 @@ namespace Permute_focal_lengths
 
             }
 
-            return userinputs(F1, F2, F3);
+            return userinputs(F1, F2, F3, EP1, EP2, EP3);
 
 
         }
 
-        public static double Maxtractcal(List<double> F1, List<double> F2, List<double> F3)
+        public static double Maxtractcal(List<double> F1, List<double> F2, List<double> F3, List<double> EP1, List<double> EP2, List<double> EP3)
         {
             double Maxd1, Maxd2, MaxInput, MaxF1, MaxF2, MaxF3, Maxa1, Maxa2, Maxb1, Maxb2, MaxMx, MaxMy, MaxMxratioMy;
 
@@ -343,7 +384,7 @@ namespace Permute_focal_lengths
 
                         Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
 
-                        return Maxtractcal(F1, F2, F3);
+                        return Maxtractcal(F1, F2, F3, EP1, EP2, EP3);
 
                     }
 
@@ -352,7 +393,7 @@ namespace Permute_focal_lengths
             // return Maxtractcal(F1, F2, F3, MxratioMy, Maxtrack);
         }
 
-        public static double Mintrackcal(List<double> F1, List<double> F2, List<double> F3)
+        public static double Mintrackcal(List<double> F1, List<double> F2, List<double> F3, List<double> EP1, List<double> EP2, List<double> EP3)
         {
             double Mind1, Mind2, MinInput, MinF1, MinF2, MinF3, Mina1, Mina2, Minb1, Minb2, MinMx, MinMy, MinMxratioMy;
 
@@ -445,7 +486,7 @@ namespace Permute_focal_lengths
 
                         Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                        return Mintrackcal(F1, F2, F3);
+                        return Mintrackcal(F1, F2, F3, EP1, EP2, EP3);
 
                     }
 
@@ -487,7 +528,7 @@ namespace Permute_focal_lengths
 
                 while (!Double.TryParse(Console.ReadLine(), out InputMax))
                 {
-                    Console.WriteLine("Please only input numeric value \n");
+                    Console.WriteLine("Please only input numeric value \n\n");
 
                     Console.WriteLine("Enter Max Magnification upto 4 decimal point \n");
                 }
@@ -500,10 +541,24 @@ namespace Permute_focal_lengths
 
                 while (!Double.TryParse(Console.ReadLine(), out InputMin))
                 {
-                    Console.WriteLine("Please only input numeric value \n");
+                    Console.WriteLine("Please only input numeric value \n\n");
 
                     Console.WriteLine("Enter Min Magnification upto 4 decimal point \n");
                 }
+
+                Console.WriteLine("Enter Input Beam Diameter \n");
+
+                while (!Double.TryParse(Console.ReadLine(), out InputbeamDia))
+                {
+                    Console.WriteLine("Please only input numeric value \n\n");
+
+                    Console.WriteLine("Enter Input Beam Diameter \n");
+
+                }
+
+                //Introduce Inputbeamdia and EPD constrain
+
+                EPDConstrain = (double)1.5 * InputbeamDia;
 
                 Console.WriteLine("\n");
 
@@ -546,7 +601,7 @@ namespace Permute_focal_lengths
 
                                     //comparison with Mx and My magnifications
 
-                                    if ((Mx[m] > MxratioMy[m]) && (MxratioMy[m] > My[m]) && (InputMax <= Mx[m]) && (InputMin >= My[m]) && (InputMax > InputMin))
+                                    if ((Mx[m] > MxratioMy[m]) && (MxratioMy[m] > My[m]) && (InputMax <= Mx[m]) && (InputMin >= My[m]) && (InputMax > InputMin) && (EPD1[k] > EPDConstrain) && (EPD1[k] == EPD2[k]))
                                     {
                                         n = n + 1;
 
@@ -667,7 +722,7 @@ namespace Permute_focal_lengths
 
                                     else
 
-                                        if ((MxratioMy[m] > Mx[m]) || (My[m] > MxratioMy[m]) || (InputMax > Mx[m]) || (InputMin < My[m]) || (InputMax < InputMin))
+                                        if ((MxratioMy[m] > Mx[m]) || (My[m] > MxratioMy[m]) || (InputMax > Mx[m]) || (InputMin < My[m]) || (InputMax < InputMin) || (EPD1[k] < EPDConstrain) || (EPD1[k] != EPD2[k]))
                                         {
                                             n = n + 1;
 
@@ -690,7 +745,7 @@ namespace Permute_focal_lengths
 
                     case "1":
 
-                        perm(focallength1, focallength2, focallength3);
+                        perm(focallength1, focallength2, focallength3, EPD1, EPD2, EPD3);
 
                         break;
 
