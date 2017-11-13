@@ -25,6 +25,7 @@ namespace Permute_focal_lengths
         public static IList<double> F2List = new List<double>() { };
         public static IList<double> F3List = new List<double>() { };
 
+        //--------------------------------------
 
         public static double perm(IList<double> F1, IList<double> F2, IList<double> F3)
         {
