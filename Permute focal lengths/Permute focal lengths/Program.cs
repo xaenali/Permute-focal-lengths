@@ -42,7 +42,7 @@ namespace Permute_focal_lengths
             //Create COM Objects. Create a COM object for everything that is referenced
             Excel.Application xlApp = new Excel.Application();
 
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Ali\Source\Repos\Permute-focal-lengths\Permute focal lengths\Permute focal lengths\focal2.xlsx");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\MyPC\source\repos\Permute-focal-lengths\Permute focal lengths\Permute focal lengths\focal2.xlsx");
 
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
 
@@ -164,11 +164,11 @@ namespace Permute_focal_lengths
                         else
 
                             if ((MxratioMy[k] > Mx[k]) || (My[k] > MxratioMy[k]) || (InputMax > Mx[k]) || (InputMin < My[k]) || (InputMax < InputMin))
-                            {
+                        {
 
-                                // Do nothing here just ignore the values
+                            // Do nothing here just ignore the values
 
-                            }
+                        }
                     }
 
                 }
@@ -202,7 +202,7 @@ namespace Permute_focal_lengths
 
                         Console.WriteLine("The Mintrackvalue can provide Max Magnifiaction = {0} and Min Magnification = {1} \n", MxList[MaxtrackList.IndexOf(MaxtrackList.Min())], MyList[MaxtrackList.IndexOf(MaxtrackList.Min())]);
 
-                        Console.WriteLine("\nRecommended option is b \n\n");
+                        Console.WriteLine("/nRecommended option is b /n/n");
                     }
                 }
 
@@ -325,9 +325,9 @@ namespace Permute_focal_lengths
                     else
 
                         if ((Maxd2 >= -0.012) && (Maxd2 < 0))
-                        {
-                            Maxd2 = 0;
-                        }
+                    {
+                        Maxd2 = 0;
+                    }
 
                     Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, MaxInput);
 
@@ -336,16 +336,16 @@ namespace Permute_focal_lengths
                 else
 
                     if ((MaxInput > InputMax) || (MaxInput < InputMin))
-                    {
+                {
 
 
-                        Console.WriteLine("Conditions didn't satified \n");
+                    Console.WriteLine("Conditions didn't satified \n");
 
-                        Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
+                    Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
 
-                        return Maxtractcal(F1, F2, F3);
+                    return Maxtractcal(F1, F2, F3);
 
-                    }
+                }
 
             }
 
@@ -427,9 +427,9 @@ namespace Permute_focal_lengths
                     else
 
                         if ((Mind2 >= -0.012) && (Mind2 < 0))
-                        {
-                            Mind2 = 0;
-                        }
+                    {
+                        Mind2 = 0;
+                    }
 
                     Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Mind1, Mind2, MinInput);
 
@@ -438,16 +438,16 @@ namespace Permute_focal_lengths
                 else
 
                     if ((MinInput > InputMax) || (MinInput < InputMin))
-                    {
+                {
 
 
-                        Console.WriteLine("Conditions didn't satified \n");
+                    Console.WriteLine("Conditions didn't satified \n");
 
-                        Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+                    Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
 
-                        return Mintrackcal(F1, F2, F3);
+                    return Mintrackcal(F1, F2, F3);
 
-                    }
+                }
 
             }
             // return Mintrackcal(F1, F2, F3, MxratioMy, Maxtrack);
@@ -573,9 +573,9 @@ namespace Permute_focal_lengths
                                         else
 
                                             if ((d2forInputMax[m] >= -0.012) && (d2forInputMax[m] < 0))
-                                            {
-                                                d2forInputMax[m] = 0;
-                                            }
+                                        {
+                                            d2forInputMax[m] = 0;
+                                        }
 
                                         Console.WriteLine("The system has d1 = {0} and d2 = {1} for Max magnification Input = {2} ", d1forInputMax[m], d2forInputMax[m], InputMax);
 
@@ -590,9 +590,9 @@ namespace Permute_focal_lengths
                                         else
 
                                             if ((d2forInputMin[m] >= -0.012) && (d2forInputMin[m] < 0))
-                                            {
-                                                d2forInputMin[m] = 0;
-                                            }
+                                        {
+                                            d2forInputMin[m] = 0;
+                                        }
 
                                         Console.WriteLine("The system has d1 = {0} and d2 = {1} for Min magnification Input = {2} ", d1forInputMin[m], d2forInputMin[m], InputMin);
 
@@ -610,9 +610,9 @@ namespace Permute_focal_lengths
                                         else
 
                                             if ((d2forMx[m] >= -0.012) && (d2forMx[m] < 0))
-                                            {
-                                                d2forMx[m] = 0;
-                                            }
+                                        {
+                                            d2forMx[m] = 0;
+                                        }
 
                                         Console.WriteLine("The system has d1 = {0} and d2 = {1} for Maximum Magnification possible = {2} ", d1forMx[m], d2forMx[m], Mx[m]);
 
@@ -630,9 +630,9 @@ namespace Permute_focal_lengths
                                         else
 
                                             if ((d2forMy[m] >= -0.012) && (d2forMy[m] < 0))
-                                            {
-                                                d2forMy[m] = 0;
-                                            }
+                                        {
+                                            d2forMy[m] = 0;
+                                        }
 
                                         Console.WriteLine("The system has d1 = {0} and d2 = {1} for Mimimum Magnification possible = {2} ", d1forMy[m], d2forMy[m], My[m]);
 
@@ -655,9 +655,9 @@ namespace Permute_focal_lengths
                                         else
 
                                             if ((d2forMxratioMy[m] >= -0.012) && (d2forMxratioMy[m] < 0))
-                                            {
-                                                d2forMxratioMy[m] = 0;
-                                            }
+                                        {
+                                            d2forMxratioMy[m] = 0;
+                                        }
 
                                         Console.WriteLine("The system has maximum length with d1 = {0} and d2 = {1} and Magnification = {2} ", d1forMxratioMy[m], d2forMxratioMy[m], MxratioMy[m]);
 
@@ -668,16 +668,16 @@ namespace Permute_focal_lengths
                                     else
 
                                         if ((MxratioMy[m] > Mx[m]) || (My[m] > MxratioMy[m]) || (InputMax > Mx[m]) || (InputMin < My[m]) || (InputMax < InputMin))
-                                        {
-                                            n = n + 1;
+                                    {
+                                        n = n + 1;
 
-                                            Console.WriteLine("number of combination = {0} ", n);
+                                        Console.WriteLine("number of combination = {0} ", n);
 
-                                            Console.WriteLine("Conditions didn't satified for comination {0}", n);
+                                        Console.WriteLine("Conditions didn't satified for comination {0}", n);
 
-                                            Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[k], focallength2[l], focallength3[m]);
+                                        Console.WriteLine("Can't choose InputMax = {0} and InputMin = {1} as InputMax ({0}) > Calculated Mx {2} or InputMin ({1}) < calculated My {3} with F1 as {4}, F2 as {5} and F3 as {6} ", InputMax, InputMin, Mx[m], My[m], focallength1[k], focallength2[l], focallength3[m]);
 
-                                        }
+                                    }
 
                                 }
 
