@@ -341,7 +341,7 @@ namespace Permute_focal_lengths
 
                     Console.WriteLine("Conditions didn't satified \n");
 
-                    Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
+                    Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n\n");
 
                     return Maxtractcal(F1, F2, F3);
 
