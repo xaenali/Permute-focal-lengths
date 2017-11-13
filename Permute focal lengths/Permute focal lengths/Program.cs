@@ -548,7 +548,7 @@ namespace Permute_focal_lengths
 
                 Console.WriteLine("Enter Input Beam Diameter \n");
 
-                while(!Double.TryParse(Console.ReadLine(), out InputbeamDia))
+                while (!Double.TryParse(Console.ReadLine(), out InputbeamDia))
                 {
                     Console.WriteLine("Please only input numeric value \n\n");
 
