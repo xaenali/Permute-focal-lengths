@@ -331,7 +331,7 @@ namespace Permute_focal_lengths
             while (true)
             {
 
-                Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
+                Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to choose Track again \n");
 
                 // Check for value other than numerics
 
@@ -340,53 +340,65 @@ namespace Permute_focal_lengths
 
                     Console.WriteLine("Please enter numeric value \n");
 
-                    Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
+                    Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to choose Track again \n");
                 }
 
 
                 Console.WriteLine("\n");
 
-
-                if ((MaxInput <= InputMax) && (MaxInput >= InputMin))
+                if(MaxInput != 000)
                 {
-
-                    Console.WriteLine("Conditions satified \n");
-
-
-                    //Calculate d1 and d2 for the Input Magnification
-
-                    Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (MaxInput * MaxF3)), 4);
-
-                    Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * MaxInput) / (MaxF1)), 4);
-
-                    if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                    if ((MaxInput <= InputMax) && (MaxInput >= InputMin))
                     {
-                        Maxd1 = 0;
+
+                        Console.WriteLine("Conditions satified \n");
+
+
+                        //Calculate d1 and d2 for the Input Magnification
+
+                        Maxd1 = Math.Round((double)MaxF1 + MaxF2 + ((MaxF1 * MaxF2) / (MaxInput * MaxF3)), 4);
+
+                        Maxd2 = Math.Round((double)MaxF2 + MaxF3 + ((MaxF2 * MaxF3 * MaxInput) / (MaxF1)), 4);
+
+                        if ((Maxd1 >= -0.012) && (Maxd1 < 0))
+                        {
+                            Maxd1 = 0;
+                        }
+                        else
+
+                            if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                            {
+                                Maxd2 = 0;
+                            }
+
+                        Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, MaxInput);
+
                     }
+
                     else
 
-                        if ((Maxd2 >= -0.012) && (Maxd2 < 0))
+                        if ((MaxInput > InputMax) || (MaxInput < InputMin))
                         {
-                            Maxd2 = 0;
-                        }
 
-                    Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Maxd1, Maxd2, MaxInput);
+
+                            Console.WriteLine("Conditions didn't satified \n");
+
+                            Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
+
+                            return Maxtractcal(F1, F2, F3, EP1, EP2, EP3);
+
+                        }
 
                 }
 
                 else
 
-                    if ((MaxInput > InputMax) || (MaxInput < InputMin))
+                    if(MaxInput == 000)
                     {
-
-
-                        Console.WriteLine("Conditions didn't satified \n");
-
-                        Console.WriteLine("Please choose values between or equal to Max and Min Magnification \n");
-
-                        return Maxtractcal(F1, F2, F3, EP1, EP2, EP3);
-
+                        return userinputs(F1, F2, F3, EP1, EP2, EP3);
                     }
+
+
 
             }
 
@@ -436,7 +448,7 @@ namespace Permute_focal_lengths
             while (true)
             {
 
-                Console.WriteLine("Enter Magnification upto 4 decimal point \n");
+                Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to choose Track again \n");
 
                 // Check for value other than numerics
 
@@ -444,53 +456,63 @@ namespace Permute_focal_lengths
                 {
                     Console.WriteLine("Please enter numeric value \n");
 
-                    Console.WriteLine("Enter Magnification upto 4 decimal point  \n");
+                    Console.WriteLine("Enter Magnification upto 4 decimal point or Enter (000) to choose Track again  \n");
                 }
 
-
-
-                if ((MinInput <= InputMax) && (MinInput >= InputMin))
+                if(MinInput != 000)
                 {
-
-                    Console.WriteLine("Conditions satified \n");
-
-
-                    //Calculate d1 and d2 for the Input Magnification
-
-                    Mind1 = Math.Round((double)MinF1 + MinF2 + ((MinF1 * MinF2) / (MinInput * MinF3)), 4);
-
-                    Mind2 = Math.Round((double)MinF2 + MinF3 + ((MinF2 * MinF3 * MinInput) / (MinF1)), 4);
-
-                    if ((Mind1 >= -0.012) && (Mind1 < 0))
+                    if ((MinInput <= InputMax) && (MinInput >= InputMin))
                     {
-                        Mind1 = 0;
+
+                        Console.WriteLine("Conditions satified \n");
+
+
+                        //Calculate d1 and d2 for the Input Magnification
+
+                        Mind1 = Math.Round((double)MinF1 + MinF2 + ((MinF1 * MinF2) / (MinInput * MinF3)), 4);
+
+                        Mind2 = Math.Round((double)MinF2 + MinF3 + ((MinF2 * MinF3 * MinInput) / (MinF1)), 4);
+
+                        if ((Mind1 >= -0.012) && (Mind1 < 0))
+                        {
+                            Mind1 = 0;
+                        }
+                        else
+
+                            if ((Mind2 >= -0.012) && (Mind2 < 0))
+                            {
+                                Mind2 = 0;
+                            }
+
+                        Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Mind1, Mind2, MinInput);
+
                     }
+
                     else
 
-                        if ((Mind2 >= -0.012) && (Mind2 < 0))
+                        if ((MinInput > InputMax) || (MinInput < InputMin))
                         {
-                            Mind2 = 0;
-                        }
 
-                    Console.WriteLine("The system has d1 = {0} and d2 = {1} for the Input Magnification = {2} \n", Mind1, Mind2, MinInput);
+
+                            Console.WriteLine("Conditions didn't satified \n");
+
+                            Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
+
+                            return Mintrackcal(F1, F2, F3, EP1, EP2, EP3);
+
+                        }
 
                 }
 
                 else
 
-                    if ((MinInput > InputMax) || (MinInput < InputMin))
+                    if(MinInput == 000)
                     {
-
-
-                        Console.WriteLine("Conditions didn't satified \n");
-
-                        Console.WriteLine("Please choose values between or equal to InputMax and InputMin Magnification \n");
-
-                        return Mintrackcal(F1, F2, F3, EP1, EP2, EP3);
-
+                        return userinputs(F1, F2, F3, EP1, EP2, EP3);
                     }
 
-            }
+                }
+
             // return Mintrackcal(F1, F2, F3, MxratioMy, Maxtrack);
         }
 
